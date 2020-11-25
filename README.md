@@ -3,10 +3,10 @@
 This is the AStar Algorithm Project (Modified).
 Its purpose is to find the shortest path from start to finish while accounting for obstacles on a grid.
 # Uses
-The most beneficial ways you can use this are to:
-Have a NPC try to get to an objective.
-Have a NPC try to follow a moving object.
-Solve a maze.
+The most beneficial ways you can use this are to:  
+Have a NPC try to get to an objective.  
+Have a NPC try to follow a moving object.  
+Solve a maze.  
 # How To Use
 First create a new object using
 `
