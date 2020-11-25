@@ -18,12 +18,12 @@ The goal (The position you want to finish at)
 The map (a map of the terrian)  
 Input the map as a set of arrarys like  
 `
-  [
-    [0,0,1,1],
-    [0,0,1,1],
-    [0,0,0,0],
-    [0,0,0,0]
-  ]
+  [  
+    [0,0,1,1],  
+    [0,0,1,1],  
+    [0,0,0,0],  
+    [0,0,0,0]  
+  ]  
 `  
 The zeros will represent open space and the ones, obstacles.  
 To input the source and goal, write an array that will be a coordinate pair '([x, y])'.  
