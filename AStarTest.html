@@ -5,23 +5,38 @@
 <body>
 	<script src="AStar.js" type="text/javascript"></script>
 	<script src="jquery.js" type="text/javascript"></script>
+	<script src="mapCreate.js" type="text/javascript"></script>
+	<button onclick="begin()">START</button>
+	<button onclick="start()">SAVE</button>
 	<script>
-		var start = [0, 0]
-		var goal = [8, 3]
-		var map = [
-					
-					[0, 0, 0, 0, 0, 1, 0, 0, 0],
-					[0, 0, 1, 1, 0, 0, 1, 1, 0],
-					[0, 0, 1, 1, 0, 0, 0, 0, 0],
-					[0, 0, 0, 0, 1, 0, 0, 0, 0]
-					
-				   ]
-		console.log(map)
-		var path = new AStar([0,0], [8, 3], map)
-		var result = path.getPath() 
-		console.log(result)
-		// expected result
-		
+		var result
+		var start
+		var goal
+		function start(){
+			$('table').remove()
+			run();
+			visual();
+		}
+		function run(){
+			start = [startX, startY]
+			goal = [goalX, goalY]
+			console.log('PREMAP');
+			console.log(preMap)
+			map = preMap
+			// map = [
+						
+				// 		[0, 0, 0, 0, 0, 1, 0, 0, 0],
+					// 	[0, 0, 1, 1, 0, 0, 1, 1, 0],
+						// [0, 0, 1, 1, 0, 0, 0, 0, 0],
+						// [0, 0, 0, 0, 1, 0, 0, 0, 0]
+						
+					//    ]
+			console.log(map)
+			var path = new AStar([0,0], [8, 3], map)
+			result = path.getPath() 
+			console.log(result)
+			// expected result
+		}
 	</script>
 	<script src="visual.js" type="text/javascript"></script>
 </body>
