@@ -42,7 +42,9 @@ function begin(){
 			var widthDigits = (width+'').length
 			var coordsRaw = $(this).attr('id');
 			var y = coordsRaw.slice(4, 3+heightDigits)
-			var x = coordsRaw.slice(4, 3+widthDigits)
+			var x = coordsRaw.slice(6, 5+widthDigits)
+			console.log('erasing')
+			console.log([x, y])
 			preMap[y][x] = 0
 		}else{
 			$(this).css('background-color', 'black')
