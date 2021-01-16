@@ -5,13 +5,24 @@ var startY
 var goalX
 var goalY
 var preMap
-function begin(){
-	height = prompt('height of maze:');
-	width = prompt('width of maze:');
+function custom(){
+	console.log('hey')
 	startX = prompt('X coord of start')-1;
 	startY = prompt('Y coord of start')-1;
 	goalX = prompt('X coord of goal')-1;
 	goalY = prompt('Y coord of goal')-1;
+}
+function begin(){
+	height = parseInt(prompt('height of maze:'));
+	width = parseInt(prompt('width of maze:'));
+	startX = 0
+	startY = 0
+	goalX = width-1
+	goalY = height-1
+	$('td#'+startY+'-'+startX+'').css('background-color', 'red')
+	$('td#'+goalY+'-'+goalX+'').css('background-color', 'blue')
+	console.log([startX, startY, goalX, goalY])
+	
 	preMap = []
 	for(var y = 0; y<height; y++){
 		preMap.push([])
@@ -48,12 +59,12 @@ function begin(){
 			preMap[y][x] = 0
 		}else{
 			$(this).css('background-color', 'black')
-			var heightDigits = (height+'').length
-			var widthDigits = (width+'').length
-			var coordsRaw = $(this).attr('id');
-			console.log(coordsRaw)
-			var y = coordsRaw.slice(4, 3+heightDigits)
-			var x = coordsRaw.slice(6, 5+widthDigits)
+			var widthDigits = $(this).index();
+			var heightDigits = $(this).parent().index();
+			// var coordsRaw = $(this).attr('id');
+			// console.log(coordsRaw)
+			var y = $(this).parent().index();
+			var x = $(this).index();
 			preMap[y][x] = 1
 			console.log([x,y])
 		}
