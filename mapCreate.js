@@ -13,15 +13,14 @@ function custom(){
 	goalY = prompt('Y coord of goal')-1;
 }
 function begin(){
+	$('.s1').hide()
+	$('.s2').show()
 	height = parseInt(prompt('height of maze:'));
 	width = parseInt(prompt('width of maze:'));
 	startX = 0
 	startY = 0
 	goalX = width-1
 	goalY = height-1
-	$('td#'+startY+'-'+startX+'').css('background-color', 'red')
-	$('td#'+goalY+'-'+goalX+'').css('background-color', 'blue')
-	console.log([startX, startY, goalX, goalY])
 	
 	preMap = []
 	for(var y = 0; y<height; y++){
@@ -44,6 +43,11 @@ function begin(){
 		insert += '</tr>'
 	}
 	$('body').append(insert)
+
+	$('td#pre-'+startY+'-'+startX+'').css('background-color', 'red')
+	$('td#pre-'+goalY+'-'+goalX+'').css('background-color', 'blue')
+	console.log([startX, startY, goalX, goalY])
+	console.log('td#pre-'+startY+'-'+startX+'')
 
 	$('td.preNode').on("click", function(){
 		console.log($(this).css('background-color'))

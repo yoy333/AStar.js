@@ -6,10 +6,19 @@
 	<script src="AStar.js" type="text/javascript"></script>
 	<script src="jquery.js" type="text/javascript"></script>
 	<script src="mapCreate.js" type="text/javascript"></script>
-	<button onclick="begin()">START</button>
-	<button onclick="start()">SAVE</button>
-	<button onclick="custom()">CUSTOMOIZE START & GOAL</button>
+	<button class = "s1" onclick="begin()">START</button>
+	<button class = "s2" onclick="start()">SAVE</button>
+	<button class = "s2" onclick="custom()">CUSTOMOIZE START & GOAL</button>
+	<div class = "s2" id="helpText">
+		<h1>Directions</h1>
+		<p>After creating a maze, press save and an AI will find the path (green) from start to finish</p>
+		<p>To create your maze, click on a square below to create an obstacle.</p>
+		<p>red = start</p>
+		<p>blue = finish</p>
+		<p>black = obstacle</p>
+	</div>
 	<script>
+		$('.s2').hide()
 		var path
 		var result
 		var start
