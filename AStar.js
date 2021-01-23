@@ -3,6 +3,7 @@ var AStar = function(source, goal, map){
 	this.source = source
 	this.goal = goal
 	this.map = map
+	this.baned = []
 	
 	this.getDistanceToGoal = function(node){
 		var distance = Math.pow(node[0]-this.goal[0], 2)+Math.pow(node[1]-this.goal[1],2)
@@ -50,16 +51,22 @@ var AStar = function(source, goal, map){
 	
 	this.exploreNode = function(node){
 		// This condition checks if the node is within the map.
+		console.log(node)
 		if(node[0]>=0 && node[1]>=0 && node[0]<this.map[0].length && node[1]<this.map.length){
-			var nodeCollision = this.map[node[1]][node[0]]
-			if(nodeCollision<=0){
-				var result = {
-					id: node,
-					distance: this.getDistanceToGoal(node),
-					path: this.retracePath(node)
+			console.log(this.checkBan(node[0], node[1]))
+			if(!this.checkBan(node[0], node[1])){
+				var nodeCollision = this.map[node[1]][node[0]]
+				console.log(nodeCollision)
+				if(nodeCollision<=0){
+					console.log('final')
+					var result = {
+						id: node,
+						distance: this.getDistanceToGoal(node),
+						path: this.retracePath(node)
+					}
+				
+					this.queue.push(result)
 				}
-			
-				this.queue.push(result)
 			}
 		}
 	}
@@ -68,21 +75,45 @@ var AStar = function(source, goal, map){
 		
 		this.exploreNode([nodeToExplore[0]+1, nodeToExplore[1]])
 		this.exploreNode([nodeToExplore[0]-1, nodeToExplore[1]])
+		console.log('prob node')
 		this.exploreNode([nodeToExplore[0], nodeToExplore[1]+1])
 		this.exploreNode([nodeToExplore[0], nodeToExplore[1]-1])
-		
+		this.baned.push([nodeToExplore[0]+1, nodeToExplore[1]])
+		this.baned.push([nodeToExplore[0]-1, nodeToExplore[1]])
+		this.baned.push([nodeToExplore[0], nodeToExplore[1]+1])
+		this.baned.push([nodeToExplore[0], nodeToExplore[1]-1])
 	}
 	
 	this.isGoalFound = function(){
+		console.log(this.queue)
 		var x_pos = this.queue[0].id[0]
 		var y_pos = this.queue[0].id[1]
 		return (x_pos==this.goal[0] && y_pos==this.goal[1])
+
+	}
+	
+	// the ban function ban you from traveling to any previous node.
+	this.checkBan = function(x, y){
+		console.log(this.baned)
+		for(var c = 0; c<this.baned.length; c++){
+			if(this.baned[c] == [x, y]){
+				return false
+			}
+		}
+		return true
 	}
 	
 	this.getPath = function(){
+		var count = 0
 		while(!this.isGoalFound()){
 		// for(var c = 0; c<6; c++){
 			// console.log('Intiration #'+(c+1))
+			count++
+			if(count>100){
+				break;
+			}
+			console.log('version')
+			console.log(this.queue[0].id)
 			this.explore(this.queue[0].id)
 			this.queue.shift()
 			this.sortByDistance()
