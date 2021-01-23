@@ -41,6 +41,8 @@ var AStar = function(source, goal, map){
 			arr.splice(pos, 1)
 		}
 		this.queue = ans
+		console.log(Object.assign([], ans))
+		console.log(Object.assign([], ans[0].id))
 	}
 	
 	this.retracePath = function(node){
@@ -53,7 +55,7 @@ var AStar = function(source, goal, map){
 		// This condition checks if the node is within the map.
 		console.log(node)
 		if(node[0]>=0 && node[1]>=0 && node[0]<this.map[0].length && node[1]<this.map.length){
-			console.log(this.checkBan(node[0], node[1]))
+			console.log(!this.checkBan(node[0], node[1]))
 			if(!this.checkBan(node[0], node[1])){
 				var nodeCollision = this.map[node[1]][node[0]]
 				console.log(nodeCollision)
@@ -75,7 +77,6 @@ var AStar = function(source, goal, map){
 		
 		this.exploreNode([nodeToExplore[0]+1, nodeToExplore[1]])
 		this.exploreNode([nodeToExplore[0]-1, nodeToExplore[1]])
-		console.log('prob node')
 		this.exploreNode([nodeToExplore[0], nodeToExplore[1]+1])
 		this.exploreNode([nodeToExplore[0], nodeToExplore[1]-1])
 		this.baned.push([nodeToExplore[0]+1, nodeToExplore[1]])
@@ -85,7 +86,7 @@ var AStar = function(source, goal, map){
 	}
 	
 	this.isGoalFound = function(){
-		console.log(this.queue)
+		console.log(this.queue[0].id)
 		var x_pos = this.queue[0].id[0]
 		var y_pos = this.queue[0].id[1]
 		return (x_pos==this.goal[0] && y_pos==this.goal[1])
@@ -94,13 +95,13 @@ var AStar = function(source, goal, map){
 	
 	// the ban function ban you from traveling to any previous node.
 	this.checkBan = function(x, y){
-		console.log(this.baned)
+		console.log(Object.assign([], this.baned))
 		for(var c = 0; c<this.baned.length; c++){
-			if(this.baned[c] == [x, y]){
-				return false
+			if(this.baned[c][0] == x && this.baned[c][1] == y){
+				return true
 			}
 		}
-		return true
+		return false
 	}
 	
 	this.getPath = function(){
