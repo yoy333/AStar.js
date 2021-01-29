@@ -11,6 +11,11 @@ function custom(){
 	startY = prompt('Y coord of start')-1;
 	goalX = prompt('X coord of goal')-1;
 	goalY = prompt('Y coord of goal')-1;
+	$('td').css('background-color', 'white')
+	$('td#pre-'+startY+'-'+startX+'').css('background-color', 'red')
+	$('td#pre-'+goalY+'-'+goalX+'').css('background-color', 'blue')
+	console.log([startX, startY, goalX, goalY])
+	console.log('td#pre-'+startY+'-'+startX+'')
 }
 function begin(){
 	$('.s1').hide()
