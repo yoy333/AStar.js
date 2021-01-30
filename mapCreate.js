@@ -14,6 +14,13 @@ function custom(){
 	$('td').css('background-color', 'white')
 	$('td#pre-'+startY+'-'+startX+'').css('background-color', 'red')
 	$('td#pre-'+goalY+'-'+goalX+'').css('background-color', 'blue')
+	for(var y = 0; y<preMap.length; y++){
+		for(var x = 0; x<preMap[0].length; x++){
+			if(preMap[y][x]){
+				$('td#pre-'+y+'-'+x+'').css('background-color', 'black')
+			}
+		}
+	}
 	console.log([startX, startY, goalX, goalY])
 	console.log('td#pre-'+startY+'-'+startX+'')
 }
